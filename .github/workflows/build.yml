@@ -4,7 +4,7 @@ on: [ push ]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,7 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
       - name: mvn test
-        run: mvnw -B verify "-Dspring.profiles.active=ci"
+        run: mvnw -B verify -Dspring.profiles.active=ci
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
