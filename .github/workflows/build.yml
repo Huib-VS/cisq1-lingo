@@ -12,10 +12,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: mvn test
-        run: mvnw -B verify -Dspring.profiles.active=ci
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify -Dspring.profiles.active=ci
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
