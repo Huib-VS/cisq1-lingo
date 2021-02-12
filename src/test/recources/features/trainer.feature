@@ -4,8 +4,9 @@ Feature: Start new game
  in order to train for tv
 
  Scenario: A player starts a game
-  When a player clicks start
+  When a player start a new game
   Then the word to guess should have 5 letters
+  And i should see the first letter
 
 
 Feature: Start new round
@@ -19,6 +20,7 @@ Feature: Start new round
    And the last word had "<previous length>" letters
    When a new round is started
    Then the word to guess has "<next length>" letters
+   And i should see the first letter
 
    Examples:
      | previous length | next length |
@@ -45,8 +47,8 @@ Feature: Guess word
 
 Scenario Outline: Guessing a word
   Given a game is active
-  When the Guess is "<guess>"
   And the word is "<word>"
+  When the Guess "<guess>" is given
   Then the feedbaback should be "<feedback>"
 
 # present = -
