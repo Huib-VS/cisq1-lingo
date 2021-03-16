@@ -10,6 +10,7 @@ public class Game {
 
     public Game(){
         this.progress = new Progress();
+        this.roundHistory = new ArrayList<Round>();
     }
 
 //    public void startInitialRound(String word){
@@ -28,5 +29,17 @@ public class Game {
         currentRound = new Round(progress.getRoundNumber(), progress.getCurrentWordLength(), word);
         System.out.println(currentRound.getWord());
         this.gameStatus = GameStatus.PLAYING;
+    }
+
+    public Round getCurrentRound() {
+        return currentRound;
+    }
+
+    public ArrayList<Round> getRoundHistory() {
+        return roundHistory;
+    }
+
+    public Progress getProgress() {
+        return progress;
     }
 }
