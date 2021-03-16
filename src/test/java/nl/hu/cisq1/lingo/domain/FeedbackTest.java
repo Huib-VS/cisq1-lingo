@@ -12,10 +12,12 @@ class FeedbackTest {
     @DisplayName("word is guessed is all letters are correct")
     void woordIsGuessed(){
         //given
-
+        String woord = "words";
+        String guess = "words";
 
         //when
-        Feedback feedback = new Feedback(List.of(Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT));
+        Feedback feedback = new Feedback(woord, guess);
+        System.out.println(feedback.getMarks());
 
         //then
         assertTrue(feedback.isWordGuessed());
@@ -25,10 +27,12 @@ class FeedbackTest {
     @DisplayName("word is not guessed if not all letters are correct")
     void woordIsNotGuessed(){
         //given
-
+        String woord = "words";
+        String guess = "doors";
 
         //when
-        Feedback feedback = new Feedback(List.of(Mark.CORRECT, Mark.ABSENT, Mark.CORRECT, Mark.CORRECT, Mark.CORRECT));
+        Feedback feedback = new Feedback(woord, guess);
+        System.out.println(feedback.getMarks());
 
         //then
         assertFalse(feedback.isWordGuessed());

@@ -1,6 +1,7 @@
 package nl.hu.cisq1.lingo.domain;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Game {
     private Round currentRound;
@@ -20,7 +21,10 @@ public class Game {
 //    }
 
 
-    public void startNewRound(String word){ // make sure word length is right
+    public void startNewRound(String word) throws InputMismatchException{ // make sure word length is right
+        if(word.length() != progress.getCurrentWordLength()){ // move to round constructor?
+            throw new InputMismatchException("given word is not the right length");
+        }
         if (currentRound != null) {
             roundHistory.add(currentRound);
             progress.incrementRound();

@@ -20,6 +20,9 @@ class GameTest {
     @Test
     @DisplayName("Start new round with 6 letters")
     void StartRoundWith6Letters(){
+        // set round to 2 and expected word length to 6
+        testGame.getProgress().incrementRound();
+
         testGame.startNewRound("hadden");
         testGame.getCurrentRound().getHint();
         String word = testGame.getCurrentRound().getWord();
@@ -29,6 +32,10 @@ class GameTest {
     @Test
     @DisplayName("Start new round with 7 letters")
     void StartRoundWith7Letters(){
+        // set round to 3 and expected word length to 7
+        testGame.getProgress().incrementRound();
+        testGame.getProgress().incrementRound();
+
         testGame.startNewRound("kaaskop");
         testGame.getCurrentRound().getHint();
         String word = testGame.getCurrentRound().getWord();

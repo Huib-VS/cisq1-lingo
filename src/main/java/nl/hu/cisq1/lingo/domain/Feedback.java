@@ -6,8 +6,38 @@ import java.util.List;
 
 public class Feedback {
     private List<Mark> marks;
+    private String word;
 
-    public Feedback(List<Mark> marks){
+    public Feedback(String word, String guess){
+        this.word = word;
+        List<Mark> marks = new ArrayList<Mark>();
+        StringBuilder alterdGuess = new StringBuilder();
+        StringBuilder alterdWord = new StringBuilder();
+
+        int index = 0;
+        for (Character letter: guess.toCharArray()) {
+            if (letter == this.word.charAt(index)) {
+                marks.add(Mark.CORRECT);
+
+            } else {
+                marks.add(Mark.TEMP);
+                alterdWord.append(this.word.charAt(index));
+                alterdGuess.append(letter);
+            }
+            index++;
+        }
+
+        index = 0;
+        for (Character letter: alterdGuess.toString().toCharArray()) {
+            if(alterdWord.toString().contains(letter.toString())){
+                marks.set(marks.indexOf(Mark.TEMP), Mark.PRESENT);
+                alterdWord = new StringBuilder(alterdWord.toString().replaceFirst(letter.toString(), ""));
+            }
+            else{
+                marks.set(marks.indexOf(Mark.TEMP), Mark.ABSENT);
+            }
+            index++;
+        }
         this.marks = marks;
     }
 
@@ -20,7 +50,11 @@ public class Feedback {
         return true;
     }
 
-//    public List<Character> getHint(ArrayList<Feedback> feedbackHistory, String word, int length) throws Exception {
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
+    //    public List<Character> getHint(ArrayList<Feedback> feedbackHistory, String word, int length) throws Exception {
 //        List<Character> hint; // list naar Array?
 //        switch (length){
 //            case 5:
